@@ -31,13 +31,20 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{Request::routeIs('categories.index') ? 'active': ''}}{{Request::routeIs('users.create') ? 'active': ''}}">
+            <li class="{{Request::routeIs('categories.index') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
                 <a href="{{route('categories.index')}}">
                     <i class="menu-icon ti-menu-alt"></i>
                     <span>دسته بندی ها</span>
                 </a>
             </li>
-            <li class="{{Request::routeIs('users.index') ? 'active': ''}}{{Request::routeIs('users.create') ? 'active': ''}}">
+            <li class="{{Request::routeIs('articles.index') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
+                <a href="{{route('articles.index')}}">
+                    <i class="menu-icon  ti-layout-menu-v "></i>
+                    <span>مقالات</span>
+                </a>
+            </li>
+            <li class="{{Request::routeIs('users.index') ? 'active': ''}}
+            {{Request::routeIs('users.create') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
                 <a href="{{route('users.index')}}">
                     <i class="menu-icon ti-user"></i>
                     <span>کاربران</span>

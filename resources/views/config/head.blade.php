@@ -23,4 +23,13 @@
     .table th ,td {
         text-align: center;
     }
+    .style-image{
+        border-radius: 15px;
+        box-shadow: 3px 3px 3px #4F4847;
+    }
+    .card{
+        box-shadow:  1px 1px 3px #968A87;
+
+    }
+
 </style>

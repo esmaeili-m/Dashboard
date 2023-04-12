@@ -70,7 +70,7 @@
                                                     <i class="material-icons">mode_edit</i>
                                                 </button>
                                             </a>
-                                            @if(auth()->user()->email != $i->email )
+
                                                 <button data-toggle="modal" data-target="#basicModal{{$i->id}}"  class="btn tblActnBtn">
                                                     <i class="material-icons">delete</i>
                                                 </button>
@@ -96,8 +96,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @endif
-
                                         </td>
                                             <?php
                                             $counter++;

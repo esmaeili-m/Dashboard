@@ -27,9 +27,15 @@ Route::prefix('admin')->group(function (){
     //////////////////////////////////////////////////////////////////////////////////////////////////-->Categories
     Route::get('/Categories',\App\Http\Livewire\Admin\Categories\Index::class)->name('categories.index');
     Route::get('/Categories/update/{category}',\App\Http\Livewire\Admin\Categories\Update::class)->name('categories.update');
+    //////////////////////////////////////////////////////////////////////////////////////////////////-->Articles
+    Route::get('/Articels',\App\Http\Livewire\Admin\Articles\Index::class)->name('articles.index');
+    Route::get('/Articels/create',\App\Http\Livewire\Admin\Articles\Create::class)->name('articles.create');
+    Route::get('/Articels/update/{article}',\App\Http\Livewire\Admin\Articles\Update::class)->name('articles.update');
+
+//    Route::get('/Categories/update/{category}',\App\Http\Livewire\Admin\Categories\Update::class)->name('ar.update');
 
 });
-
+Route::post('/upload/post-image',  [\App\Http\Controllers\UploadImageController::class, 'uploadImage'])->name('upload.post.image');
 
 
 
