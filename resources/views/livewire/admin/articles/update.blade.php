@@ -123,6 +123,45 @@
 
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-control-label">
+                                        <div class="form-check m-l-10">
+                                            <label class="form-check-label">
+                                                <input wire:model="size" class="form-check-input"
+                                                       type="checkbox" value="">
+                                                تغییر ابعاد تصویر
+                                                <span class="form-check-sign">
+                                                                    <span class="check"></span>
+                                                            </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    @if($size)
+                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-label">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="number"
+                                                           wire:model.lazy="width"
+                                                           class="form-control"
+                                                           placeholder="عرض  تصویر را وارد کنید">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-label">
+
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="number"
+                                                           wire:model.lazy="heigh"
+                                                           class="form-control"
+                                                           placeholder="طول  تصویر را وارد کنید">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                </div>
+
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                         <label for="email_address_2">توضیحات پست</label>

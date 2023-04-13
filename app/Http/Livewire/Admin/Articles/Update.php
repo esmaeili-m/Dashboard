@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request;
+use Intervention\Image\ImageManager;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -22,6 +23,10 @@ class Update extends Component
     public $category_id;
     public $article_id;
     public $old_slug;
+    public $size=0;
+    public $width;
+    public $heigh;
+
     public function mount()
     {
         $this->article_id=Request::segment(4);
@@ -74,7 +79,16 @@ class Update extends Component
             if ($this->image != $this->old_image){
                 if (File::exists($this->old_image)){
                     unlink($this->old_image);
-                    $this->image=$this->UploadFile($this->image);
+                    if ($this->size){
+                        if(!$this->width || !$this->heigh){
+                            return $this->dispatchBrowserEvent('swal:model',[
+                                'type'=>'error',
+                                'title'=>'ابعاد تصویر را انتخاب کنید',
+                                'text'=>''
+                            ]);
+                        }
+                    }
+                    $this->image=$this->UploadFile($this->image,$this->size);
                 }else{
                     return $this->dispatchBrowserEvent('swal:model',[
                         'type'=>'error',
@@ -96,10 +110,14 @@ class Update extends Component
         return redirect()->route('articles.index');
 
     }
-    public function UploadFile($image){
+    public function UploadFile($image,$newsize){
         $fileName=$image->getClientOriginalName();
         $directory='uploads/articles'.'/'.now()->year.'/'.now()->month.'/'.now()->day.'/'.now()->second;
         $image->storeAs($directory,$fileName,'public_files');
+        $manager=new ImageManager();
+        if($newsize){
+            $image = $manager->make("$directory".'/'."$fileName")->resize($this->width, $this->heigh)->save("$directory".'/'."$fileName");
+        }
         return "$directory".'/'."$fileName";
     }
     public function render()

@@ -25,7 +25,7 @@ class ArticleSeeder extends Seeder
                'name'=>fake()->name().' ('.$i,
                'slug'=>'url'.$i,
                'description'=>fake()->text(),
-               'image'=>fake()->name(),
+               'image'=>'uploads/articles/seeder/'.rand(1,92).'.jpg',
                'order'=>$i,
                'user'=>$i,
                'category_id'=>1

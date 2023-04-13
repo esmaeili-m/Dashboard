@@ -75,17 +75,17 @@
                                         <label for="email_address_2">دسته مقاله</label>
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <div wire:ignore class="form-line">
-                                            <select wire:model="category_id">
-                                                <option value="" selected>گزینه خود را انتخاب کنید</option>
-                                                @foreach(\App\Models\Category::all() as $i)
-                                                    <option value="{{$i->id}}">{{$i->name}}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="form-group">
+                                            <div wire:ignore class="form-line">
+                                                <select wire:model="category_id">
+                                                    <option value="" selected>گزینه خود را انتخاب کنید</option>
+                                                    @foreach(\App\Models\Category::all() as $i)
+                                                        <option value="{{$i->id}}">{{$i->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-label">
@@ -101,7 +101,9 @@
                                                 <div class="file-path-wrapper">
                                                     <input wire:model="image" class="file-path validate" type="text">
                                                 </div>
+
                                             </div>
+
                                         </div>
                                         @if($image)
                                             <div>
@@ -112,6 +114,45 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-control-label">
+                                        <div class="form-check m-l-10">
+                                            <label class="form-check-label">
+                                                <input wire:model="size" class="form-check-input"
+                                                       type="checkbox" value="">
+                                                تغییر ابعاد تصویر
+                                                <span class="form-check-sign">
+                                                                    <span class="check"></span>
+                                                            </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    @if($size)
+                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-label">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="number"
+                                                           wire:model.lazy="width"
+                                                           class="form-control"
+                                                           placeholder="آدرس  مقاله را وارد کنید">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-label">
+
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="number"
+                                                           wire:model.lazy="heigh"
+                                                           class="form-control"
+                                                           placeholder="آدرس  مقاله را وارد کنید">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                </div>
+
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                         <label for="email_address_2">توضیحات پست</label>
@@ -158,28 +199,28 @@
     <script src="{{asset('admin/tiny/tiny.js')}}" referrerpolicy="origin"></script>
     <script>
 
-        var editor=tinymce.init({
+        var editor = tinymce.init({
             selector: 'textarea',
-            language:'fa',
-            image_title : true,
+            language: 'fa',
+            image_title: true,
             automatic_uploads: true,
-            images_upload_url : '/upload/post-image',
+            images_upload_url: '/upload/post-image',
             file_picker_types: 'image',
-            file_picker_callback: function (cv, value, meta){
+            file_picker_callback: function (cv, value, meta) {
                 var input = document.createElement('input');
                 input.setAttribute('type', 'file');
                 input.setAttribute('accept', 'image/*');
-                input.onchange = function(){
+                input.onchange = function () {
                     var file = this.files[0];
                     var reader = new FileReader();
                     reader.readAsDataURL(file);
-                    render.onload = function(){
-                        var id = 'blobid'+(new Date()).getTime();
+                    render.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
                         var blobCache = tinymce.activeEditor.editorUpload.blobCache;
                         var base64 = reader.result.split(',')[1];
                         var blobInfo = blobCache.create(id, file, base64);
                         blobCache.add(blobInfo);
-                        cb(blobInfo.blobUri(), {title:file.name});
+                        cb(blobInfo.blobUri(), {title: file.name});
                     };
                 };
                 input.click();
