@@ -77,7 +77,6 @@ class Create extends Component
         return redirect()->route('articles.index');
     }
     public function UploadFile($image,$newsize){
-
         $fileName=$image->getClientOriginalName();
         $directory='uploads/articles'.'/'.now()->year.'/'.now()->month.'/'.now()->day.'/'.now()->second;
         $image->storeAs($directory,$fileName,'public_files');

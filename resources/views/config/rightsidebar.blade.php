@@ -43,6 +43,13 @@
                     <span>مقالات</span>
                 </a>
             </li>
+            <li class="{{Request::routeIs('social.index') ? 'active': ''}}
+            {{Request::routeIs('users.create') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
+                <a href="{{route('social.index')}}">
+                    <i class="menu-icon  ti-instagram"></i>
+                    <span>سوشیال مدیا</span>
+                </a>
+            </li>
             <li class="{{Request::routeIs('users.index') ? 'active': ''}}
             {{Request::routeIs('users.create') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
                 <a href="{{route('users.index')}}">

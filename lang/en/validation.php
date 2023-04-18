@@ -11,7 +11,6 @@ return array(
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
-
     "accepted"         => ":attribute باید پذیرفته شده باشد.",
     "active_url"       => "آدرس :attribute معتبر نیست",
     "after"            => ":attribute باید تاریخی بعد از :date باشد.",

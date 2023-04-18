@@ -31,6 +31,10 @@ Route::prefix('admin')->group(function (){
     Route::get('/Articels',\App\Http\Livewire\Admin\Articles\Index::class)->name('articles.index');
     Route::get('/Articels/create',\App\Http\Livewire\Admin\Articles\Create::class)->name('articles.create');
     Route::get('/Articels/update/{article}',\App\Http\Livewire\Admin\Articles\Update::class)->name('articles.update');
+    /////////////////////////////////////////////////////////////////////////////////////////////////->socialMedia
+    Route::get('/SocialMedia',\App\Http\Livewire\Admin\Social\Index::class)->name('social.index');
+    Route::get('/SocialMedia/update/{socialMedia}',\App\Http\Livewire\Admin\Social\Update::class)->name('social.update');
+
 
 //    Route::get('/Categories/update/{category}',\App\Http\Livewire\Admin\Categories\Update::class)->name('ar.update');
 
