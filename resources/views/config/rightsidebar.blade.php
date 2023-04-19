@@ -37,6 +37,12 @@
                     <span>دسته بندی ها</span>
                 </a>
             </li>
+            <li class="{{Request::routeIs('posts.index') ? 'active': ''}}{{Request::routeIs('posts.update') ? 'active': ''}}">
+                <a href="{{route('posts.index')}}">
+                    <i class="menu-icon  ti-view-grid "></i>
+                    <span>پست ها</span>
+                </a>
+            </li>
             <li class="{{Request::routeIs('articles.index') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
                 <a href="{{route('articles.index')}}">
                     <i class="menu-icon  ti-layout-menu-v "></i>

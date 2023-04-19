@@ -1,4 +1,4 @@
-@section('title','ساخت مقاله')
+@section('title','ویرایش مقاله')
 <div>
     <section class="content">
         <div class="container-fluid">

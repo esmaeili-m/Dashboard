@@ -34,10 +34,11 @@ Route::prefix('admin')->group(function (){
     /////////////////////////////////////////////////////////////////////////////////////////////////->socialMedia
     Route::get('/SocialMedia',\App\Http\Livewire\Admin\Social\Index::class)->name('social.index');
     Route::get('/SocialMedia/update/{socialMedia}',\App\Http\Livewire\Admin\Social\Update::class)->name('social.update');
-
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////->Posts
+    Route::get('/posts',\App\Http\Livewire\Admin\Post\Index::class)->name('posts.index');
+    Route::get('/posts/create',\App\Http\Livewire\Admin\Post\Create::class)->name('posts.create');
+    Route::get('/posts/update/{post}',\App\Http\Livewire\Admin\Post\Update::class)->name('posts.update');
 //    Route::get('/Categories/update/{category}',\App\Http\Livewire\Admin\Categories\Update::class)->name('ar.update');
-
 });
 Route::post('/upload/post-image',  [\App\Http\Controllers\UploadImageController::class, 'uploadImage'])->name('upload.post.image');
 
