@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Post;
 
 use App\Models\Post;
+use App\Models\Seo;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request;
 use Intervention\Image\ImageManager;
@@ -25,11 +26,19 @@ class Update extends Component
     public $size=0;
     public $width;
     public $heigh;
-
+    public $seoTitle;
+    public $seoDescription;
+    public $seoCategory;
     public function mount()
     {
         $this->post_id=Request::segment(4);
         $post=Post::find($this->post_id);
+        $seo=Seo::where('type','posts')->where('post_id',$this->post_id)->first();
+        if ($seo){
+            $this->seoTitle=$seo->title;
+            $this->seoDescription=$seo->description;
+            $this->seoCategory=$seo->category;
+        }
         $this->name=$post->name;
         $this->slug=$post->slug;
         $this->old_slug=$post->slug;
@@ -39,6 +48,7 @@ class Update extends Component
         $this->order=$post->order;
         $this->old_order=$post->order;
         $this->category_id=$post->category_id;
+
     }
 
     protected $rules =[
@@ -106,6 +116,26 @@ class Update extends Component
             'user'=>auth()->user()->name,
             'description'=>$this->description,
         ]);
+        if ($this->seoTitle || $this->seoDescription || $this->seoCategory){
+            $seo=Seo::where('type','posts')->where('post_id',$this->post_id)->first();
+            if($seo){
+                Seo::where('post_id',$this->post_id)->update([
+                    'title'=>$this->seoTitle,
+                    'description'=>$this->seoDescription,
+                    'category'=>$this->seoCategory,
+                    'type'=>'posts',
+                    'post_id'=>$this->post_id
+                ]);
+            }else{
+                Seo::create([
+                    'title'=>$this->seoTitle,
+                    'description'=>$this->seoDescription,
+                    'category'=>$this->seoCategory,
+                    'type'=>'posts',
+                    'post_id'=>$this->post_id
+                ]);
+            }
+        }
         return redirect()->route('posts.index');
 
     }

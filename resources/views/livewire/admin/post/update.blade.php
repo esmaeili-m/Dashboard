@@ -173,7 +173,7 @@
                                   <textarea required wire:model.lazy="description"
                                             class="min-h-fit h-48 "
                                             name="editor"
-                                            id="editor"></textarea>
+                                            id="myeditorinstance"></textarea>
                                                 </div>
 
                                             </div>
@@ -197,6 +197,80 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>تنظمیات سئو </h2><br>
+                            <p>تنظیمات پیش فرض مناسب با پست شما برای سئو انجام میشود اگر نیاز به تنظیمات اختصاصی دارید از طریق فرم زیر میتوانید انجام دهید</p>
+                        </div>
+                        <div class="body">
+
+
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="email_address_2">عنوان صفحه</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input wire:model.lazy="seoTitle"
+                                                   type="text"
+                                                   class="form-control"
+                                                   placeholder="عنوان صفحه">
+                                        </div>
+                                    </div>
+                                    @error('name')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-label">
+                                    <label for="email_address_2">دسته صفحه</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div wire:ignore class="form-line">
+                                            <select wire:model="seoCategory">
+                                                <option value="" selected>گزینه خود را انتخاب کنید</option>
+                                                @foreach(\App\Models\Category::all() as $i)
+                                                    <option value="{{$i->id}}">{{$i->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="email_address_2">توضیحات صفحه</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <div wire:ignore>
+                                  <textarea required wire:model.lazy="seoDescription"
+                                            class="min-h-fit h-48 "
+                                            style="height: 150px;border-color: #0D47A1"
+
+                                  ></textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    @error('description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
@@ -209,7 +283,7 @@
     <script>
 
         var editor=tinymce.init({
-            selector: 'textarea',
+            selector: 'textarea#myeditorinstance',
             language:'fa',
             image_title : true,
             automatic_uploads: true,

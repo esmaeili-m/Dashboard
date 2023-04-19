@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Articles;
 
 use App\Models\Article;
+use App\Models\Seo;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -19,7 +20,9 @@ class Create extends Component
     public $heigh;
     public $category_id;
     public $size=0;
-
+    public $seoTitle;
+    public $seoDescription;
+    public $seoCategory;
     public function mount()
     {
         $max=Article::max('order');
@@ -64,7 +67,7 @@ class Create extends Component
             }
         }
         $this->image=$this->UploadFile($this->image,$this->size);
-        Article::create([
+        $newArticle=Article::create([
             'name'=>$this->name,
             'description'=>$this->description,
             'image'=>$this->image,
@@ -74,6 +77,15 @@ class Create extends Component
             'category_id'=>$this->category_id,
 
         ]);
+        if ($this->seoTitle || $this->seoDescription || $this->seoCategory){
+            Seo::create([
+                'title'=>$this->seoTitle,
+                'description'=>$this->seoDescription,
+                'category'=>$this->seoCategory,
+                'type'=>'articles',
+                'post_id'=>$newArticle->id
+            ]);
+        }
         return redirect()->route('articles.index');
     }
     public function UploadFile($image,$newsize){

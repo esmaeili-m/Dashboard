@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Post;
 
 use App\Models\Post;
+use App\Models\Seo;
 use Intervention\Image\ImageManager;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -19,6 +20,9 @@ class Create extends Component
     public $heigh;
     public $category_id;
     public $size=0;
+    public $seoTitle;
+    public $seoDescription;
+    public $seoCategory;
 
     public function mount()
     {
@@ -64,7 +68,7 @@ class Create extends Component
             }
         }
         $this->image=$this->UploadFile($this->image,$this->size);
-        Post::create([
+        $newPost=Post::create([
             'name'=>$this->name,
             'description'=>$this->description,
             'image'=>$this->image,
@@ -74,6 +78,15 @@ class Create extends Component
             'category_id'=>$this->category_id,
 
         ]);
+        if ($this->seoTitle || $this->seoDescription || $this->seoCategory){
+            Seo::create([
+                'title'=>$this->seoTitle,
+                'description'=>$this->seoDescription,
+                'category'=>$this->seoCategory,
+                'type'=>'posts',
+                'post_id'=>$newPost->id
+            ]);
+        }
         return redirect()->route('posts.index');
     }
     public function UploadFile($image,$newsize){
