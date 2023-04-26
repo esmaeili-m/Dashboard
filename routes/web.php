@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+////////////////////////////////////////////////////////////////-->home
+Route::get('/',\App\Http\Livewire\Home\Index::class)->name('home');
 ////////////////////////////////////////////////////////////////-->Admin
 Route::prefix('admin')->group(function (){
     Route::get('/dashboard',\App\Http\Livewire\Admin\Index::class)->name('dashboard');
@@ -38,6 +40,8 @@ Route::prefix('admin')->group(function (){
     Route::get('/posts',\App\Http\Livewire\Admin\Post\Index::class)->name('posts.index');
     Route::get('/posts/create',\App\Http\Livewire\Admin\Post\Create::class)->name('posts.create');
     Route::get('/posts/update/{post}',\App\Http\Livewire\Admin\Post\Update::class)->name('posts.update');
+    /////////////////////////////////////////////////////////////////////////////////////////////////->settings
+    Route::get('/settings',\App\Http\Livewire\Admin\Settings\Index::class)->name('settings.index');
 //    Route::get('/Categories/update/{category}',\App\Http\Livewire\Admin\Categories\Update::class)->name('ar.update');
 });
 Route::post('/upload/post-image',  [\App\Http\Controllers\UploadImageController::class, 'uploadImage'])->name('upload.post.image');

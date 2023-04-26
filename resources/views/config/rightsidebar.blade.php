@@ -23,12 +23,7 @@
                     <li class="active">
                         <a href="index.html">داشبورد 1</a>
                     </li>
-                    <li>
-                        <a href="pages/dashboard/dashboard2.html">داشبورد 2</a>
-                    </li>
-                    <li>
-                        <a href="pages/dashboard/dashboard3.html">داشبورد 3</a>
-                    </li>
+
                 </ul>
             </li>
             <li class="{{Request::routeIs('categories.index') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
@@ -54,6 +49,12 @@
                 <a href="{{route('social.index')}}">
                     <i class="menu-icon  ti-instagram"></i>
                     <span>سوشیال مدیا</span>
+                </a>
+            </li>
+            <li class="{{Request::routeIs('settings.index') ? 'active': ''}}">
+                <a href="{{route('settings.index')}}">
+                    <i class="menu-icon  ti-settings"></i>
+                    <span>تنظیمات سایت</span>
                 </a>
             </li>
             <li class="{{Request::routeIs('users.index') ? 'active': ''}}

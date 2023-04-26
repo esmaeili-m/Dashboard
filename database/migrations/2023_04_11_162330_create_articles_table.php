@@ -20,10 +20,8 @@ return new class extends Migration
             $table->text('like')->default(0);
             $table->bigInteger('order');
             $table->string('user');
-            $table->unsignedBigInteger('category_id');
+            $table->bigInteger('category_id');
             $table->boolean('status')->default (1);
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('CASCADE');
-            $table->timestamps();
         });
     }
 
