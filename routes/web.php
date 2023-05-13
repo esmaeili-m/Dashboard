@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 //});
 ////////////////////////////////////////////////////////////////-->home
 Route::get('/',\App\Http\Livewire\Home\Index::class)->name('home');
+Route::get('/singin',\App\Http\Livewire\Home\Singin\Index::class)->name('singin');
+Route::get('/aboutUs',\App\Http\Livewire\Home\Aboute\Index::class)->name('aboutUs');
+Route::get('/contactUs',\App\Http\Livewire\Home\Contact\Index::class)->name('contactUs');
+Route::post('/message/store',[\App\Http\Controllers\MessageController::class,'store'])->name('message');
 ////////////////////////////////////////////////////////////////-->Admin
 Route::prefix('admin')->group(function (){
     Route::get('/dashboard',\App\Http\Livewire\Admin\Index::class)->name('dashboard');
@@ -42,7 +46,12 @@ Route::prefix('admin')->group(function (){
     Route::get('/posts/update/{post}',\App\Http\Livewire\Admin\Post\Update::class)->name('posts.update');
     /////////////////////////////////////////////////////////////////////////////////////////////////->settings
     Route::get('/settings',\App\Http\Livewire\Admin\Settings\Index::class)->name('settings.index');
+    ////////////////////////////////////////////////////////////////////////////////////////////////////>gallery
+    Route::get('/gallery',\App\Http\Livewire\Admin\Gallery\Index::class)->name('gallery.index');
+    Route::get('/singin',\App\Http\Livewire\Admin\Singin\Index::class)->name('singin.index');
 //    Route::get('/Categories/update/{category}',\App\Http\Livewire\Admin\Categories\Update::class)->name('ar.update');
+    ////////////////////////////////////////////////////////////////////////////////////////////////////>message
+    Route::get('/message',\App\Http\Livewire\Admin\Message\Index::class)->name('message.index');
 });
 Route::post('/upload/post-image',  [\App\Http\Controllers\UploadImageController::class, 'uploadImage'])->name('upload.post.image');
 

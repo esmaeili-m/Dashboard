@@ -16,6 +16,7 @@
 @include('configHome.header')
 {{$slot}}
 </body>
+@include('configHome.footer')
 @include('configHome.foot')
 @livewireScripts
 </html>

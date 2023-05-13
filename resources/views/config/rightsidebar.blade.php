@@ -44,11 +44,28 @@
                     <span>مقالات</span>
                 </a>
             </li>
-            <li class="{{Request::routeIs('social.index') ? 'active': ''}}
-            {{Request::routeIs('users.create') ? 'active': ''}}{{Request::routeIs('users.update') ? 'active': ''}}">
+            <li class="{{Request::routeIs('social.index') ? 'active': ''}}">
                 <a href="{{route('social.index')}}">
                     <i class="menu-icon  ti-instagram"></i>
                     <span>سوشیال مدیا</span>
+                </a>
+            </li>
+            <li class="{{Request::routeIs('gallery.index') ? 'active': ''}}">
+                <a href="{{route('gallery.index')}}">
+                    <i class="menu-icon  ti-gallery"></i>
+                    <span>گالری تصاویر</span>
+                </a>
+            </li>
+            <li class="{{Request::routeIs('singin.index') ? 'active': ''}}">
+                <a href="{{route('singin.index')}}">
+                    <i class="menu-icon  ti-user"></i>
+                    <span>ثبت نام </span>
+                </a>
+            </li>
+            <li class="{{Request::routeIs('message.index') ? 'active': ''}}">
+                <a href="{{route('message.index')}}">
+                    <i class="menu-icon  ti-email"></i>
+                    <span>پیام ها </span>
                 </a>
             </li>
             <li class="{{Request::routeIs('settings.index') ? 'active': ''}}">
