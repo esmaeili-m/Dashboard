@@ -1,4 +1,4 @@
-@if(request()->routeIs('aboutUs') || request()->routeIs('contactUs'))
+@if(request()->routeIs('aboutUs') || request()->routeIs('contactUs')|| request()->routeIs('article.detials')|| request()->routeIs('article') )
     <header id="header" class="header tra-menu navbar-dark">
         @else
     <header id="header" class="header tra-menu navbar-light">
@@ -37,21 +37,21 @@
                         <li aria-haspopup="true"><a href="#">آموزش ها<span class="wsarrow"></span></a>
                             <ul class="sub-menu">
                                 @foreach(\App\Models\Category::where('status',1)->where('father_id',null)->get() as $i)
-                                    <li aria-haspopup="true"><a href="#features-8">{{$i->name}}</a></li>
+                                    <li aria-haspopup="true"><a href="{{route('categories',$i->slug)}}">{{$i->name}}</a></li>
                                 @endforeach
                             </ul>
                         </li>
 
-                        <li class="nl-simple" aria-haspopup="true"><a href="#features-4">مقالات </a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="{{route('article')}}">مقالات </a></li>
                         <li class="nl-simple" aria-haspopup="true"><a href="{{route('aboutUs')}}">درباره ما </a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="#features-4">تماس با ما </a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="{{route('contactUs')}}">تماس با ما </a></li>
 
 
                         <!-- DROPDOWN MENU -->
 
                         <!-- HEADER BUTTON -->
                         <li class="nl-simple" aria-haspopup="true">
-                            <a href="{{route('singin')}}" class="btn btn-skyblue tra-white-hover last-link">بیایید شروع کنیم </a>
+                            <a href="{{route('singin')}}" class="btn btn-skyblue tra-black-hover last-link">بیایید شروع کنیم </a>
                         </li>
 
 

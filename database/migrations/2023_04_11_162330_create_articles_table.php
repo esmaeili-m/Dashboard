@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('user');
             $table->bigInteger('category_id');
             $table->boolean('status')->default (1);
+            $table->timestamps();
+
         });
     }
 

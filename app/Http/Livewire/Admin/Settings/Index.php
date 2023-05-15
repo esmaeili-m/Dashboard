@@ -50,6 +50,7 @@ class Index extends Component
     /////////////////////////////////////////////////////////////////////////////////////->logo
     public function updateLogo1()
     {
+
         $setting=Setting::find(1);
         if ($this->image){
             $this->image=$this->UploadFile($this->image);

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->unsignedBigInteger('father_id')->nullable();
             $table->text('description')->nullable();
+            $table->text('image')->nullable();
             $table->boolean('status')->default(1);
             $table->foreign('father_id')
                 ->references('id')

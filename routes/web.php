@@ -22,6 +22,9 @@ Route::get('/',\App\Http\Livewire\Home\Index::class)->name('home');
 Route::get('/singin',\App\Http\Livewire\Home\Singin\Index::class)->name('singin');
 Route::get('/aboutUs',\App\Http\Livewire\Home\Aboute\Index::class)->name('aboutUs');
 Route::get('/contactUs',\App\Http\Livewire\Home\Contact\Index::class)->name('contactUs');
+Route::get('/article',\App\Http\Livewire\Home\Article\Index::class)->name('article');
+Route::get('/article/{name}',\App\Http\Livewire\Home\Article\Details::class)->name('article.detials');
+Route::get('/categories/{name}',\App\Http\Livewire\Home\Categories\Index::class)->name('categories');
 Route::post('/message/store',[\App\Http\Controllers\MessageController::class,'store'])->name('message');
 ////////////////////////////////////////////////////////////////-->Admin
 Route::prefix('admin')->group(function (){

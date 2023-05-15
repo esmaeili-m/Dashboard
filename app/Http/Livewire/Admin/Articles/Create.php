@@ -73,7 +73,8 @@ class Create extends Component
             'image'=>$this->image,
             'slug'=>$this->slug,
             'order'=>$this->order,
-            'user'=>auth()->user()->name,
+//            'user'=>auth()->user()->name,
+            'user'=>1,
             'category_id'=>$this->category_id,
 
         ]);
